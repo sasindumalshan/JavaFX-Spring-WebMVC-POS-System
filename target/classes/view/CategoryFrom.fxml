@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="1003.0" prefWidth="1764.0" stylesheets="@../assest/css/css.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.interleon.pos.controller.CategoryFromController">
+   <children>
+      <Pane layoutX="1445.0" layoutY="586.0" prefHeight="176.0" prefWidth="294.0" styleClass="shadow">
+         <children>
+            <Text layoutX="25.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txt" text="All Category" wrappingWidth="192.66667025459174" />
+            <Text fx:id="txtCategoryCount" layoutX="50.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 50;" styleClass="txt" text="12+" wrappingWidth="127.62369537353516" />
+            <Text layoutX="29.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" styleClass="txt" text="on " wrappingWidth="127.62369537353516" />
+         </children>
+      </Pane>
+      <Pane layoutX="31.0" layoutY="43.0" prefHeight="42.0" prefWidth="338.0" styleClass="round-greed">
+         <children>
+            <JFXTextField fx:id="txtSearchText" alignment="CENTER" focusColor="#ffffff00" layoutX="1.0" layoutY="1.0" onKeyReleased="#categoryFromSearchOnKeyReleased" prefHeight="39.0" prefWidth="293.0" styleClass="text-field-search" unFocusColor="#4d4d4d00" />
+            <ImageView fitHeight="30.0" fitWidth="26.0" layoutX="303.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assest/icon/icons8-search-50%20(1).png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="397.0" layoutY="44.0" prefHeight="39.0" prefWidth="182.0" styleClass="nav-btn">
+         <children>
+            <Text layoutX="39.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-fill: #3E4B57;" styleClass="txt" text="Wed, Nov 11" wrappingWidth="127.62369537353516" />
+         </children>
+      </Pane>
+      <Pane layoutX="33.0" layoutY="439.0" prefHeight="534.0" prefWidth="1376.0" styleClass="shadow">
+         <children>
+            <Text layoutX="65.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-fill: #3E4B57;" styleClass="txt" text="Category" wrappingWidth="269.62369537353516" />
+            <ImageView fitHeight="30.0" fitWidth="26.0" layoutX="23.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assest/icon/icons8-data-sheet-50.png" />
+               </image>
+            </ImageView>
+            <TableView fx:id="tblCategory" layoutX="22.0" layoutY="82.0" onMouseClicked="#categoryFromTblOnClick" prefHeight="430.0" prefWidth="1322.0">
+              <columns>
+                <TableColumn fx:id="colId" prefWidth="122.66665649414062" text="    #" />
+                <TableColumn fx:id="colName" minWidth="0.0" prefWidth="408.9999694824219" text="    Name" />
+                  <TableColumn fx:id="colCode" minWidth="0.0" prefWidth="303.0" text="Code" />
+                  <TableColumn fx:id="colStatus" minWidth="0.0" prefWidth="328.0" text="Status" />
+                  <TableColumn fx:id="colAction" minWidth="0.0" prefWidth="157.0" />
+              </columns>
+               <stylesheets>
+                  <URL value="@../assest/css/tbl.css" />
+                  <URL value="@../assest/css/css.css" />
+               </stylesheets>
+            </TableView>
+            <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="1275.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assest/icon/icons8-option-24.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="1444.0" layoutY="786.0" prefHeight="176.0" prefWidth="294.0" styleClass="shadow">
+         <children>
+            <Text layoutX="25.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txt" text="ALl Unit" wrappingWidth="158.62369537353516" />
+            <Text fx:id="txtUnitCount" layoutX="50.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 50;" styleClass="txt" text="12+" wrappingWidth="127.62369537353516" />
+            <Text layoutX="29.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" styleClass="txt" text="on today" wrappingWidth="127.62369537353516" />
+         </children>
+      </Pane>
+      <JFXButton layoutX="44.0" layoutY="107.0" onAction="#categoryFromAddOnAction" prefHeight="60.0" prefWidth="175.0">
+         <graphic>
+            <GridPane prefHeight="50.0" prefWidth="184.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="90.66668701171875" minWidth="10.0" prefWidth="69.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.66668701171875" minWidth="10.0" prefWidth="115.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Text fx:id="btnText" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-fill: #5FC9E6;" styleClass="txt" text="NEW" wrappingWidth="72.62369537353516" GridPane.columnIndex="1" />
+                  <ImageView fitHeight="39.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assest/icon/icons8-add-48%20(2).png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </ImageView>
+               </children>
+            </GridPane>
+         </graphic>
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="border" />
+         </styleClass>
+      </JFXButton>
+      <JFXButton fx:id="btnClear" layoutX="243.0" layoutY="121.0" minWidth="39.0" onAction="#categoryFromClearOnAction" prefHeight="33.0" prefWidth="54.0" style="-fx-background-color: #DEE9ED; -fx-background-radius: 10;" styleClass="action-btn" visible="false">
+         <graphic>
+            <GridPane prefHeight="33.0" prefWidth="27.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="59.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assest/icon/icons8-cancel-30.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="2.0" />
+                     </GridPane.margin>
+                  </ImageView>
+               </children>
+            </GridPane>
+         </graphic>
+      </JFXButton>
+      <Text fill="#030303" layoutX="67.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Poppins-14" text="*Name" wrappingWidth="109.5000432729721" />
+      <JFXTextField fx:id="txtName" alignment="CENTER" focusColor="#ffffff00" layoutX="65.0" layoutY="272.0" prefHeight="40.0" prefWidth="244.0" promptText="Name" styleClass="text-field-normal" stylesheets="@../../../../../Prabo/Lavish_Styloo/src/main/resources/view/Cashier/css/Dassh.css" unFocusColor="#4d4d4d00" />
+      <Text fill="#67636b" layoutX="67.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 13;" styleClass="Poppins-14" text="Enter Your Full Name Add For System" wrappingWidth="265.5000432729721" />
+      <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="70.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Prabo/Lavish_Styloo/src/main/resources/view/assest/icon/icons8-employee-50%20(3).png" />
+         </image>
+      </ImageView>
+      <Text fill="#545454" layoutX="106.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" styleClass="txt" text="ADD " wrappingWidth="352.1667150259018" />
+      <JFXTextField fx:id="txtCode" alignment="CENTER" focusColor="#ffffff00" layoutX="344.0" layoutY="272.0" prefHeight="40.0" prefWidth="244.0" promptText="Code" styleClass="text-field-normal" stylesheets="@../../../../../Prabo/Lavish_Styloo/src/main/resources/view/Cashier/css/Dassh.css" unFocusColor="#4d4d4d00" />
+      <Text fx:id="txtId" fill="#545454" layoutX="168.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20;" styleClass="txt" text="ID" wrappingWidth="352.1667150259018" />
+      <JFXComboBox fx:id="cmbStates" layoutX="628.0" layoutY="275.0" onAction="#statusOnAction" prefHeight="34.0" prefWidth="244.0" promptText="Status" styleClass="text-field-normal" />
+      <JFXComboBox fx:id="cmbStates1" layoutX="899.0" layoutY="274.0" onAction="#statusOnAction" prefHeight="34.0" prefWidth="244.0" promptText="Status" styleClass="text-field-normal" />
+   </children>
+</AnchorPane>
