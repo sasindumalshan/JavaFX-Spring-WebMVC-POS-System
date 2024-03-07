@@ -12,8 +12,8 @@ import java.util.List;
  * @project Interleaon
  * @date 3/4/2024
  */
-public interface SupplierRepo extends JpaRepository<Supplier, String> {
-    @Query(value = "SELECT * FROM supplier WHERE id LIKE ? OR name LIKE ?", nativeQuery = true)
+public interface SupplierRepo extends JpaRepository<Supplier, Long> {
+    @Query(value = "SELECT * FROM tbl_master_suppliers WHERE id LIKE ? OR name LIKE ?", nativeQuery = true)
     List<Supplier> findAllUnitLikeIdAndName(String id, String name);
 
 }

@@ -23,7 +23,7 @@ public class UnitController {
     UnitService service;
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseUtil getSupplier(String id) {
+    public ResponseUtil getSupplier(Long id) {
         return new ResponseUtil("200", "ok", service.findUnit(id));
     }
 
@@ -54,7 +54,7 @@ public class UnitController {
     }
 
     @DeleteMapping
-    public ResponseUtil remove(String id) {
+    public ResponseUtil remove(Long id) {
         try {
             service.remove(id);
         } catch (Exception e) {
@@ -67,8 +67,9 @@ public class UnitController {
     public ResponseUtil search(String id) {
         return new ResponseUtil("200", "ok", service.findAllUnitLikeIdAndName(id));
     }
+
     @GetMapping(path = "countByAll")
-    public ResponseUtil countByAll(String id) {
+    public ResponseUtil countByAll() {
         return new ResponseUtil("200", "remove Successful", service.countByAll());
     }
 }

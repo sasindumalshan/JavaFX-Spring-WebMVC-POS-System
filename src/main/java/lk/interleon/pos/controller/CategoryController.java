@@ -23,7 +23,7 @@ public class CategoryController {
     CategoryService service;
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseUtil getSupplier(String id) {
+    public ResponseUtil getSupplier(Long id) {
         return new ResponseUtil("200", "ok", service.findUnit(id));
     }
 
@@ -58,10 +58,11 @@ public class CategoryController {
     }
 
     @DeleteMapping
-    public ResponseUtil remove(String id) {
+    public ResponseUtil remove(Long id) {
         try {
             service.remove(id);
         } catch (Exception e) {
+            e.printStackTrace();
             return new AppWideExceptionHandler().handleAllRuntimeExceptions(new RuntimeException("Something wrongs Remove data"));
         }
         return new ResponseUtil("200", "remove Successful", id);

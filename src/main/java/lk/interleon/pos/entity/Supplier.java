@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Sasindu Malshan
@@ -20,11 +18,12 @@ import java.util.List;
 @Data
 @ToString
 
-@Entity
+@Entity(name = "tbl_master_suppliers")
 public class Supplier {
     @Id
-    @Column(name = "id", columnDefinition = "VARCHAR(64)")
-    String id;
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     @Column(name = "code", columnDefinition = "VARCHAR(64)")
     String code;
     @Column(name = "name", columnDefinition = "VARCHAR(64)")
@@ -34,13 +33,4 @@ public class Supplier {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
-    private List<Unit> products = new ArrayList<>();
-
-    /*@ManyToMany
-    @JoinTable(
-            name = "supplier_unit",
-            joinColumns = @JoinColumn(name = "supplier_id"),
-            inverseJoinColumns = @JoinColumn(name = "unit_id"))
-    private List<Unit> units = new ArrayList<>();*/
 }

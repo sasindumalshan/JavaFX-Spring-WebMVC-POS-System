@@ -16,13 +16,13 @@ public interface SupplierService {
 
     void update(SupplierDTO supplierDTO);
 
-    void remove(String id);
+    void remove(Long id);
 
-    SupplierDTO findUnit(String id);
+    SupplierDTO findUnit(Long id);
 
     List<SupplierDTO> findAllUnit();
 
     List<SupplierDTO> findAllSupplierLikeIdAndName(String text);
 
-    String countByAll();
+    Long countByAll();
 }

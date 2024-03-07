@@ -20,23 +20,22 @@ import java.util.List;
 @Data
 @ToString
 
-@Entity
+@Entity(name = "tbl_master_unit")
 public class Unit {
     @Id
-    @Column(name = "id", columnDefinition = "VARCHAR(64)")
-    String id;
-    @Column(name = "code", columnDefinition = "VARCHAR(64)")
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+    @Column(name = "code", columnDefinition = "VARCHAR(64)", nullable = false)
     String code;
-    @Column(name = "name", columnDefinition = "VARCHAR(64)")
+    @Column(name = "name", columnDefinition = "VARCHAR(64)", nullable = false)
     String name;
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @OneToMany(mappedBy = "unit", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Item> items = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "supplier_id")
-    private Supplier supplier;
 }
+
+

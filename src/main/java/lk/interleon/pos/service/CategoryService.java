@@ -15,13 +15,13 @@ public interface CategoryService {
 
     void update(CategoryDTO categoryDTO);
 
-    void remove(String id);
+    void remove(Long id);
 
-    CategoryDTO findUnit(String id);
+    CategoryDTO findUnit(Long id);
 
     List<CategoryDTO> findAllUnit();
 
     List<CategoryDTO> findAllUnitLikeIdAndName(String id);
 
-    String countByAll();
+    Long countByAll();
 }

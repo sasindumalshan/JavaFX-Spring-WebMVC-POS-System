@@ -4,7 +4,6 @@ import lk.interleon.pos.entity.enumretion.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,20 +17,23 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@ToString
 
-@Entity
+@Entity(name = "tbl_master_category")
 public class Category {
     @Id
-    @Column(name = "id", columnDefinition = "VARCHAR(64)")
-    String id;
-    @Column(name = "code", columnDefinition = "VARCHAR(64)")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    Long id;
+    @Column(name = "code", columnDefinition = "VARCHAR(64)", nullable = false)
     String code;
-    @Column(name = "name", columnDefinition = "VARCHAR(64)")
+    @Column(name = "name", columnDefinition = "VARCHAR(64)", nullable = false)
     String name;
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<Unit> products = new ArrayList<>();
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Item> items = new ArrayList<>();
+
 }
+
+

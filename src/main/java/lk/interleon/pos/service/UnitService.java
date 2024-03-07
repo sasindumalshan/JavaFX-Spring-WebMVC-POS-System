@@ -15,13 +15,13 @@ public interface UnitService {
 
     void update(UnitDTO unitDTO);
 
-    void remove(String id);
+    void remove(Long id);
 
-    UnitDTO findUnit(String id);
+    UnitDTO findUnit(Long id);
 
     List<UnitDTO> findAllUnit();
 
     List<UnitDTO> findAllUnitLikeIdAndName(String id);
 
-    String countByAll();
+    Long countByAll();
 }

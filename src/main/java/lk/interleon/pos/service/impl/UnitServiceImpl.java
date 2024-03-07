@@ -30,7 +30,7 @@ public class UnitServiceImpl implements UnitService {
 
     @Override
     public void save(UnitDTO unitDTO) {
-        if (repo.existsById(unitDTO.getId())) {
+        if (repo.existsById(Long.valueOf(unitDTO.getId()))) {
             throw new RuntimeException(unitDTO.getId() + " This Supplier is Already available");
         }
         repo.save(mapper.map(unitDTO, Unit.class));
@@ -38,23 +38,23 @@ public class UnitServiceImpl implements UnitService {
 
     @Override
     public void update(UnitDTO unitDTO) {
-        if (!repo.existsById(unitDTO.getId())) {
+        if (!repo.existsById(Long.valueOf(unitDTO.getId()))) {
             throw new RuntimeException(unitDTO.getId() + "This Supplier is not available, please check before update.!");
         }
         repo.save(mapper.map(unitDTO, Unit.class));
     }
 
     @Override
-    public void remove(String id) {
+    public void remove(Long id) {
         if (!repo.existsById(id)) {
             throw new RuntimeException(id + " This Unit is not available, please check before delete.!");
         }
-        repo.deleteById(id);
+        repo.deleteById(Long.valueOf(id));
     }
 
     @Override
-    public UnitDTO findUnit(String id) {
-        return mapper.map(repo.findById(id), UnitDTO.class);
+    public UnitDTO findUnit(Long id) {
+        return mapper.map(repo.findById(Long.valueOf(id)), UnitDTO.class);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class UnitServiceImpl implements UnitService {
     }
 
     @Override
-    public String countByAll() {
-        return String.valueOf(repo.count());
+    public Long countByAll() {
+        return repo.count();
     }
 }

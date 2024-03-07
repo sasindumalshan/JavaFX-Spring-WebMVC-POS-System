@@ -28,7 +28,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public void save(SupplierDTO supplierDTO) {
-        if (supplierRepo.existsById(supplierDTO.getId())) {
+        if (supplierRepo.existsById(Long.valueOf(supplierDTO.getId()))) {
             throw new RuntimeException(supplierDTO.getId() + " This Supplier is Already available");
         }
         supplierRepo.save(mapper.map(supplierDTO, Supplier.class));
@@ -36,14 +36,14 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public void update(SupplierDTO supplierDTO) {
-        if (!supplierRepo.existsById(supplierDTO.getId())) {
+        if (!supplierRepo.existsById(Long.valueOf(supplierDTO.getId()))) {
             throw new RuntimeException(supplierDTO.getId() + " This Supplier is not available, please check before update.!");
         }
         supplierRepo.save(mapper.map(supplierDTO, Supplier.class));
     }
 
     @Override
-    public void remove(String id) {
+    public void remove(Long id) {
         if (!supplierRepo.existsById(id)) {
             throw new RuntimeException(id + " This Supplier is not available, please check before delete.!");
         }
@@ -51,7 +51,7 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public SupplierDTO findUnit(String id) {
+    public SupplierDTO findUnit(Long id) {
         return mapper.map(supplierRepo.findById(id), SupplierDTO.class);
     }
 
@@ -68,7 +68,7 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public String countByAll() {
-        return String.valueOf(supplierRepo.count());
+    public Long countByAll() {
+        return supplierRepo.count();
     }
 }

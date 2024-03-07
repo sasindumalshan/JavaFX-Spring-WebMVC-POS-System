@@ -2,7 +2,9 @@ package lk.interleon.pos.service.impl;
 
 import lk.interleon.pos.dto.CategoryDTO;
 import lk.interleon.pos.entity.Category;
+import lk.interleon.pos.entity.Item;
 import lk.interleon.pos.repo.CategoryRepo;
+import lk.interleon.pos.repo.ItemRepo;
 import lk.interleon.pos.service.CategoryService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Sasindu Malshan
@@ -24,10 +27,12 @@ public class CategoryServiceImpl implements CategoryService {
     ModelMapper mapper;
     @Autowired
     CategoryRepo categoryRepo;
+    @Autowired
+    ItemRepo itemRepo;
 
     @Override
     public void save(CategoryDTO categoryDTO) {
-        if (categoryRepo.existsById(categoryDTO.getId())) {
+        if (categoryRepo.existsById(Long.valueOf(categoryDTO.getId()))) {
             throw new RuntimeException(categoryDTO.getId() + " This Supplier is Already available");
         }
         categoryRepo.save(mapper.map(categoryDTO, Category.class));
@@ -35,23 +40,26 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void update(CategoryDTO categoryDTO) {
-        if (!categoryRepo.existsById(categoryDTO.getId())) {
+        if (!categoryRepo.existsById(Long.valueOf(categoryDTO.getId()))) {
             throw new RuntimeException(categoryDTO.getId() + "This Supplier is not available, please check before update.!");
         }
         categoryRepo.save(mapper.map(categoryDTO, Category.class));
     }
 
     @Override
-    public void remove(String id) {
+    public void remove(Long id) {
+        boolean isExistsByCategory = itemRepo.existsByCategory_Id(id);
+        System.out.println(isExistsByCategory);
         if (!categoryRepo.existsById(id)) {
             throw new RuntimeException(id + " This Category is not available, please check before delete.!");
         }
-        categoryRepo.deleteById(id);
+//        categoryRepo.delete(categoryRepo.getReferenceById(Long.valueOf(id)));
+
     }
 
     @Override
-    public CategoryDTO findUnit(String id) {
-        return mapper.map(categoryRepo.findById(id), CategoryDTO.class);
+    public CategoryDTO findUnit(Long id) {
+        return mapper.map(categoryRepo.findById(Long.valueOf(id)), CategoryDTO.class);
 
     }
 
@@ -68,7 +76,9 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public String countByAll() {
-        return String.valueOf(categoryRepo.count());
+    public Long countByAll() {
+        return categoryRepo.count();
     }
+
+
 }

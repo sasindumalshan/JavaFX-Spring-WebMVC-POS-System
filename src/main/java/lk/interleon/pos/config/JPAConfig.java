@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "lk.interleon.pos.repo")
@@ -27,11 +28,12 @@ public class JPAConfig {
     Environment environment;
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaVendorAdapter vendorAdapter) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaVendorAdapter vendorAdapter, Properties properties) {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setDataSource(dataSource);
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan(environment.getRequiredProperty("pro.entity"));
+        factory.setJpaProperties(properties);
         return factory;
     }
 
@@ -58,6 +60,13 @@ public class JPAConfig {
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory factory) {
         return new JpaTransactionManager(factory);
+    }
+
+    @Bean
+    Properties properties() {
+        Properties properties = new Properties();
+        properties.setProperty("spring.jpa.hibernate.ddl-auto", "update");
+        return properties;
     }
 
 }
