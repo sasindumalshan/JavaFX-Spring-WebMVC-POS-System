@@ -1,7 +1,6 @@
 package lk.interleon.pos.controller;
 
 import lk.interleon.pos.advisor.AppWideExceptionHandler;
-import lk.interleon.pos.dto.UnitDTO;
 import lk.interleon.pos.dto.UserDTO;
 import lk.interleon.pos.service.UserService;
 import lk.interleon.pos.utility.ResponseUtil;
@@ -20,12 +19,16 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE} ,consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseUtil verifyUser(String user_name,String password) {
-        return new ResponseUtil("200", "ok", userService.verifyUser(user_name,password));
+    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseUtil verifyUser(String user_name, String password) {
+        try {
+            return new ResponseUtil("200", "ok", userService.verifyUser(user_name, password));
+        } catch (Exception e) {
+            return new AppWideExceptionHandler().handleAllRuntimeExceptions(new RuntimeException("Something wrongs  User"));
+        }
     }
 
-    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(path = "reg", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseUtil save(@RequestBody UserDTO userDTO) {
         try {
             userService.save(userDTO);

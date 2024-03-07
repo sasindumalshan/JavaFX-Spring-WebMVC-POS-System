@@ -12,7 +12,7 @@ public interface UserService {
 
     void save(UserDTO userDTO);
 
-    Object verifyUser(String user_name, String password);
+    boolean verifyUser(String user_name, String password);
 
     void update(UserDTO userDTO);
 

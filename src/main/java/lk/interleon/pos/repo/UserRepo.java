@@ -10,4 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface UserRepo extends JpaRepository<User, Long> {
+
+    boolean existsByUser_nameAndPassword(String user_name , String password);
 }
